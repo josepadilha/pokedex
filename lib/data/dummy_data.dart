@@ -2,7 +2,7 @@ import '../models/pokemons.dart';
 
 final dummyPokemons = [
   Pokemon(
-    id: 'p1',
+    id: 1,
     name: 'Pikachu',
     category: 'fairy',
     type: 'elétrico',
@@ -12,7 +12,7 @@ final dummyPokemons = [
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png',
   ),
   Pokemon(
-    id: 'p2',
+    id: 2,
     name: 'Charmander',
     category: 'dragon',
     type: 'fogo',
@@ -22,7 +22,7 @@ final dummyPokemons = [
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg',
   ),
   Pokemon(
-    id: 'p3',
+    id: 3,
     name: 'Bulbasaur',
     category: 'Grama',
     type: 'veneno',
@@ -32,7 +32,7 @@ final dummyPokemons = [
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg',
   ),
   Pokemon(
-    id: 'p4',
+    id: 4,
     name: 'squirtle',
     category: 'fairy',
     type: 'elétrico',

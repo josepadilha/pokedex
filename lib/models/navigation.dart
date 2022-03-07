@@ -1,9 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/appBars/app_Bar_Home.dart';
-import 'package:pokedex/appBars/app_bar_pokelista.dart';
-import 'package:pokedex/appBars/app_bar_register.dart';
-
 import '../pages/home_page.dart';
 import '../pages/poke_list_page.dart';
 import '../pages/register_page.dart';
@@ -25,15 +21,6 @@ class Navigation with ChangeNotifier {
     ];
 
     return tabsPage[index];
-  }
-
-  Object appBar(int index) {
-    final AppBars = [
-      'POKEDEX',
-      {'POKELIST': Icon(Icons.star)},
-      'CADASTRE SEU POKEMON'
-    ];
-    return AppBars[index];
   }
 }
 

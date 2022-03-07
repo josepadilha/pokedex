@@ -1,19 +1,21 @@
+import 'package:flutter/material.dart';
+
 class Pokemon {
-  String id;
+  int id;
   String name;
-  String category;
+  String? category;
   String type;
   String abilites;
-  String description;
+  String? description;
   String image;
 
   Pokemon({
     required this.id,
     required this.name,
-    required this.category,
+    this.category,
     required this.type,
     required this.abilites,
-    required this.description,
+    this.description,
     required this.image,
   });
 }

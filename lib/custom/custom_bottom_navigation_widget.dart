@@ -53,5 +53,3 @@ class CustomBottomNavigationWidget extends StatelessWidget {
     );
   }
 }
-
-//Icons.add_circle
