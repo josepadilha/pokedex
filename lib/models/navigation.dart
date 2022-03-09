@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../pages/home_page.dart';
-import '../pages/poke_list_page.dart';
-import '../pages/register_page.dart';
+import 'package:pokedex/pages/home_page.dart';
+import 'package:pokedex/pages/poke_list_page.dart';
+import 'package:pokedex/pages/register_page.dart';
 
 class Navigation with ChangeNotifier {
   int _pageSelectionIndex = 0;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/components/tab_bar_page.dart';
+import 'package:pokedex/models/navigation.dart';
+import 'package:pokedex/models/pokemon_list.dart';
+import 'package:pokedex/utils/app_routes.dart';
 import 'package:provider/provider.dart';
-
-import '../components/tab_bar_page.dart';
-import '../models/navigation.dart';
-import '../utils/app_routes.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Navigation provider = Provider.of(context);
+    final Pokelist providerPokemons = Provider.of(context);
     return Scaffold(
       appBar: AppBar(title: const Center(child: Text('POKEDEX'))),
       body: Stack(children: [
@@ -43,7 +44,14 @@ class HomePage extends StatelessWidget {
                     TextButton(
                       child: const Text('Visualizar Pokémons'),
                       onPressed: () {
-                        Navigator.of(context).pushNamed(AppRoutes.POKELISTPAGE);
+                        if (providerPokemons.list.isEmpty) {
+                          providerPokemons.loadedPokemons();
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.POKELISTPAGE);
+                        } else {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.POKELISTPAGE);
+                        }
                       },
                     ),
                   ],

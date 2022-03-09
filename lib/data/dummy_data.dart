@@ -10,6 +10,7 @@ final dummyPokemons = [
     description: 'Um pokémon de raio',
     image:
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png',
+    isFavorite: false,
   ),
   Pokemon(
     id: 2,
@@ -20,6 +21,7 @@ final dummyPokemons = [
     description: 'Um pokémon de fogo',
     image:
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg',
+    isFavorite: false,
   ),
   Pokemon(
     id: 3,
@@ -30,6 +32,7 @@ final dummyPokemons = [
     description: 'Um pokémon de planta',
     image:
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg',
+    isFavorite: false,
   ),
   Pokemon(
     id: 4,
@@ -40,5 +43,6 @@ final dummyPokemons = [
     description: 'Um pokémon de raio',
     image:
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png',
+    isFavorite: false,
   ),
 ];

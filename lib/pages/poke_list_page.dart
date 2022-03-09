@@ -1,40 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pokedex/components/card_pokelist.dart';
+import 'package:pokedex/components/tab_bar_page.dart';
+import 'package:pokedex/models/navigation.dart';
 import 'package:pokedex/models/pokemon_list.dart';
+import 'package:pokedex/models/pokemons.dart';
+import 'package:pokedex/pages/modal_page.dart';
 import 'package:provider/provider.dart';
-import '../components/tab_bar_page.dart';
-import '../models/navigation.dart';
 
-class PokeListPage extends StatefulWidget {
+class PokeListPage extends StatelessWidget {
   const PokeListPage({Key? key}) : super(key: key);
 
-  @override
-  State<PokeListPage> createState() => _PokeListPageState();
-}
-
-class _PokeListPageState extends State<PokeListPage> {
-  bool isSvgImage(String url) {
-    bool endsWithFile = url.toLowerCase().endsWith('.svg');
-    if (endsWithFile) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  bool _isLoading = true;
-  @override
-  void initState() {
-    super.initState();
-    Provider.of<Pokelist>(context, listen: false)
-        .loadedPokemons()
-        .then((value) => _isLoading = false);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   Provider.of<Pokelist>(context, listen: false)
+  //       .loadedPokemons()
+  //       .then((value) => _isLoading = false);
+  // }
 
   @override
   Widget build(BuildContext context) {
+    bool _isLoading = true;
     final _pokelist = Provider.of<Pokelist>(context);
     final Navigation provider = Provider.of<Navigation>(context);
+    //_pokelist.loadedPokemons().then((value) => print(_pokelist.list));
 
     return Scaffold(
       appBar: AppBar(
@@ -42,39 +32,16 @@ class _PokeListPageState extends State<PokeListPage> {
           child: Text('POKELISTA'),
         ),
       ),
-      body: _isLoading
+      body: _pokelist.isLoading
           ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
               itemCount: _pokelist.itensCount,
               itemBuilder: (ctx, index) {
-                return Card(
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: const Color.fromRGBO(26, 167, 211, 1),
-                      child: isSvgImage(_pokelist.list[index].image)
-                          ? SvgPicture.network(
-                              _pokelist.list[index].image,
-                            )
-                          : Image.network(
-                              _pokelist.list[index].image,
-                            ),
-                    ),
-                    title: Row(
-                      children: [
-                        Text(_pokelist.list[index].name),
-                        const Icon(
-                          Icons.star,
-                          color: Color.fromRGBO(242, 190, 34, 1),
-                        ),
-                      ],
-                    ),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.arrow_forward_ios),
-                      onPressed: () {},
-                    ),
-                  ),
+                return ChangeNotifierProvider.value(
+                  value: _pokelist.list[index],
+                  child: CardPokelist(),
                 );
               },
             ),
@@ -82,6 +49,5 @@ class _PokeListPageState extends State<PokeListPage> {
     );
   }
 }
-   
-// 192.168.101.6
 
+// 192.168.101.6

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/navigation.dart';
 import 'package:pokedex/models/pokemon_list.dart';
+import 'package:pokedex/models/pokemons.dart';
 import 'package:pokedex/pages/poke_list_page.dart';
 import 'package:pokedex/pages/register_page.dart';
 import './pages/home_page.dart';
