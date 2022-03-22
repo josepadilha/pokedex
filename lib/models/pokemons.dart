@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class Pokemon with ChangeNotifier {
@@ -7,7 +9,8 @@ class Pokemon with ChangeNotifier {
   final String type;
   final String abilites;
   final String description;
-  final String image;
+  final String? image;
+  final File? imageFile;
   bool isFavorite;
 
   Pokemon(
@@ -17,8 +20,9 @@ class Pokemon with ChangeNotifier {
       required this.type,
       required this.abilites,
       required this.description,
-      required this.image,
-      this.isFavorite = false});
+      this.image,
+      this.isFavorite = false,
+      this.imageFile});
 
   toggleFavorite() {
     isFavorite = !isFavorite;

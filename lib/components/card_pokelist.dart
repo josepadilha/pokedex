@@ -30,12 +30,12 @@ class CardPokelist extends StatelessWidget {
         },
         leading: CircleAvatar(
           backgroundColor: const Color.fromRGBO(26, 167, 211, 1),
-          child: providerPokemon.isSvgImage(provider.image)
+          child: providerPokemon.isSvgImage(provider.image!)
               ? SvgPicture.network(
-                  provider.image,
+                  provider.image!,
                 )
               : Image.network(
-                  provider.image,
+                  provider.image!,
                 ),
         ),
         title: Row(
