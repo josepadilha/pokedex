@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pokedex/models/pokemons.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,12 +10,23 @@ class Pokelist with ChangeNotifier {
 
   List<Pokemon> get list => [..._pokelist];
   int get itensCount => _pokelist.length;
-
+  File? imagePokemon = null;
   bool isLoading = true;
 
   toggleLoading() {
     isLoading = false;
   }
+
+  selectFile() async {
+    final ImagePicker _picker = ImagePicker();
+    XFile? image = await _picker.pickImage(
+        source: ImageSource.gallery, maxWidth: 127, maxHeight: 127);
+    if (image == null) return;
+
+    imagePokemon = File(image.path);
+
+    notifyListeners();
+  } // função que seleciona um arquivo e preenche na tela de registro.
 
   bool isSvgImage(String url) {
     bool endsWithFile = url.toLowerCase().endsWith('.svg');

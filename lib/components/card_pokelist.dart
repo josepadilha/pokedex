@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pokedex/components/drop_down_button.dart';
+import 'package:pokedex/models/list_drop_down.dart';
 import 'package:pokedex/models/pokemon_list.dart';
 import 'package:pokedex/models/pokemons.dart';
 import 'package:pokedex/pages/modal_page.dart';
@@ -20,6 +22,7 @@ class CardPokelist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ListDropDown dropProvider = Provider.of(context);
     final Pokemon provider = Provider.of(context);
     final Pokelist providerPokemon = Provider.of<Pokelist>(context);
     return Card(
@@ -56,7 +59,9 @@ class CardPokelist extends StatelessWidget {
         ),
         trailing: IconButton(
           icon: const Icon(Icons.arrow_forward_ios),
-          onPressed: () {},
+          onPressed: () {
+            dropProvider.loadedAbility();
+          },
         ),
       ),
     );

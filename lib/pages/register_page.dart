@@ -1,7 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:pokedex/components/drop_down_button.dart';
 import 'package:pokedex/components/tab_bar_page.dart';
+import 'package:pokedex/models/list_drop_down.dart';
 import 'package:pokedex/models/navigation.dart';
+import 'package:pokedex/models/pokemon_list.dart';
 import 'package:provider/provider.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -9,8 +13,9 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ListDropDown dropProvider = Provider.of(context);
     final Navigation provider = Provider.of(context);
-    File _imagePokemon;
+    final Pokelist pokelistProvider = Provider.of(context);
 
     DropdownMenuItem<String> buildMenuItem(String item) =>
         DropdownMenuItem(value: item, child: Text(item));
@@ -24,29 +29,40 @@ class RegisterPage extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverFillRemaining(
-              hasScrollBody: true,
+              hasScrollBody: false,
               child: Padding(
                 padding: const EdgeInsets.all(14),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    Container(
-                      color: Colors.amber,
-                      child: const Text('Crie seu próprio Pokémon'),
+                    const Text(
+                      'Crie seu próprio Pokémon',
+                      style: TextStyle(
+                          fontSize: 16.5,
+                          color: Color.fromRGBO(4, 138, 191, 1),
+                          fontWeight: FontWeight.bold),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(
                           children: [
-                            Container(
-                              width: 127,
-                              height: 127,
-                              child: Image.asset(
-                                'assets/images/pokebola.png',
-                                fit: BoxFit.cover,
-                              ),
-                              //child: ,
+                            TextButton(
+                              onPressed: () {
+                                pokelistProvider.selectFile();
+                              },
+                              child: Container(
+                                  width: 127,
+                                  height: 127,
+                                  child: pokelistProvider.imagePokemon == null
+                                      ? Image.asset(
+                                          'assets/images/pokebola.png',
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Image.file(
+                                          pokelistProvider.imagePokemon!,
+                                          fit: BoxFit.cover,
+                                        )),
                             ),
                             Container(
                               child: Text('Editar'),
@@ -62,8 +78,9 @@ class RegisterPage extends StatelessWidget {
                             height: 22,
                             width: 220,
                             child: TextFormField(
-                              decoration:
-                                  InputDecoration(hintText: 'Nome do Pokémon'),
+                              decoration: InputDecoration(
+                                hintText: 'Nome do Pokémon',
+                              ),
                             ),
                           ),
                         ),
@@ -75,9 +92,10 @@ class RegisterPage extends StatelessWidget {
                         Container(
                           height: 22,
                           width: 166,
-                          child: TextFormField(
-                            decoration: InputDecoration(hintText: 'Categoria'),
-                          ),
+                          child: DropButton(),
+                          //    TextFormField(
+                          //  decoration: InputDecoration(hintText: 'Categoria'),
+                          //),
                         ),
                         Container(
                           height: 22,
@@ -108,7 +126,26 @@ class RegisterPage extends StatelessWidget {
                           //alignLabelWithHint: true,
                         ),
                       ),
-                    )
+                    ),
+                    Container(
+                      height: 38,
+                      width: 233,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Salvar'),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            Color.fromRGBO(4, 138, 191, 1),
+                          ),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(17),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

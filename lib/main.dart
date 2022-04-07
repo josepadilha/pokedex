@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/models/list_drop_down.dart';
 import 'package:pokedex/models/navigation.dart';
 import 'package:pokedex/models/pokemon_list.dart';
 import 'package:pokedex/models/pokemons.dart';
@@ -27,6 +28,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => Navigation(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ListDropDown(),
         ),
       ],
       child: MaterialApp(
