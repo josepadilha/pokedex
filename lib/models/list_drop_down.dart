@@ -1,14 +1,22 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:pokedex/models/informations.dart';
 
 class ListDropDown with ChangeNotifier {
-  final List type = [];
-  final List category = [];
-  final List ability = [];
+  final List<String> type = [];
+  final List<String> category = [];
+  final List<String> ability = [];
+  String selectCategory = '';
+  String selectType = '';
+  String selectAbility = '';
+  List<String> _newList = [];
+
+  //List<String> get type => _type;
+  //List<String> get category => _category;
+  //List<String> get ability => _ability;
+
   Future<void> loadedType() async {
+    type.add('Tipo');
     int index;
     final response =
         await http.get(Uri.parse('https://pokeapi.co/api/v2/type'));
@@ -17,10 +25,11 @@ class ListDropDown with ChangeNotifier {
     for (index = 0; index < data['results'].length; index++) {
       type.add(data['results'][index]['name']);
     }
-    print(type);
+    notifyListeners();
   }
 
   Future<void> loadedCategory() async {
+    category.add('Categoria');
     int index;
     final response =
         await http.get(Uri.parse('https://pokeapi.co/api/v2/egg-group/'));
@@ -29,10 +38,12 @@ class ListDropDown with ChangeNotifier {
     for (index = 0; index < data['results'].length; index++) {
       category.add(data['results'][index]['name']);
     }
-    print(category);
+    notifyListeners();
   }
 
   Future<void> loadedAbility() async {
+    //if (ability.isNotEmpty) return;
+    ability.add('Habilidades');
     int index;
     final response =
         await http.get(Uri.parse('https://pokeapi.co/api/v2/ability'));
@@ -41,6 +52,6 @@ class ListDropDown with ChangeNotifier {
     for (index = 0; index < data['results'].length; index++) {
       ability.add(data['results'][index]['name']);
     }
-    print(ability);
+    notifyListeners();
   }
 }

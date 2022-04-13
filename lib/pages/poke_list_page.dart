@@ -41,7 +41,7 @@ class PokeListPage extends StatelessWidget {
               itemBuilder: (ctx, index) {
                 return ChangeNotifierProvider.value(
                   value: _pokelist.list[index],
-                  child: CardPokelist(),
+                  child: const CardPokelist(),
                 );
               },
             ),

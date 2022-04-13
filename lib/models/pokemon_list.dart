@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pokedex/models/pokemons.dart';
 import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart' as syspaths;
 
 class Pokelist with ChangeNotifier {
   List<Pokemon> _pokelist = []; //dummyPokemons;
-
+  List<Pokemon> newList = [];
   List<Pokemon> get list => [..._pokelist];
   int get itensCount => _pokelist.length;
   File? imagePokemon = null;
-  bool isLoading = true;
+  bool isLoading = false;
 
   toggleLoading() {
-    isLoading = false;
+    isLoading = !isLoading;
   }
 
   selectFile() async {
@@ -24,6 +26,10 @@ class Pokelist with ChangeNotifier {
     if (image == null) return;
 
     imagePokemon = File(image.path);
+
+    //final appDir = await syspaths.getApplicationDocumentsDirectory();
+    //String fileName = path.basename(imagePokemon!.path);
+    //final savedImage = await imagePokemon!.copy('${appDir.path}/${fileName}');
 
     notifyListeners();
   } // função que seleciona um arquivo e preenche na tela de registro.
@@ -52,13 +58,17 @@ class Pokelist with ChangeNotifier {
         abilites: pokemon.abilites,
         description: pokemon.description,
         image: pokemon.image,
+        imageFile: pokemon.imageFile,
         isFavorite: false,
       ),
     );
+    notifyListeners();
   }
 
   Future<void> loadedPokemons() async {
-    _pokelist.clear();
+    if (newList.isNotEmpty) return;
+    //tentar criar uma lista paralela e depois adicionar a lista principal.
+    toggleLoading();
     int index;
     for (index = 1; index < 16; index++) {
       final response = await http
@@ -71,7 +81,9 @@ class Pokelist with ChangeNotifier {
 
       //print(dataSpecies['egg_groups'][0]['name']);
       //print(dataSpecies['flavor_text_entries'][0]['flavor_text']);
-      _pokelist.add(
+      print(
+          '${data['id']}, ${data['name']}, ${dataSpecies['egg_groups'][0]['name']},${data['types'][0]['type']['name']}, ${dataSpecies['flavor_text_entries'][0]['flavor_text']},${data['sprites']['back_default']}');
+      newList.add(
         Pokemon(
           id: data['id'],
           name: data['name'],
@@ -82,9 +94,9 @@ class Pokelist with ChangeNotifier {
           image: data['sprites']['back_default'],
         ),
       );
-      toggleLoading();
     }
-
+    toggleLoading();
+    _pokelist.addAll(newList);
     notifyListeners();
   }
 }

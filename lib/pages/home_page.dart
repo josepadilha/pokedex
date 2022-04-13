@@ -44,14 +44,13 @@ class HomePage extends StatelessWidget {
                     TextButton(
                       child: const Text('Visualizar Pokémons'),
                       onPressed: () {
-                        if (providerPokemons.list.isEmpty) {
-                          providerPokemons.loadedPokemons();
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.POKELISTPAGE);
-                        } else {
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.POKELISTPAGE);
-                        }
+                        //if (providerPokemons.list.isEmpty) {
+                        providerPokemons.loadedPokemons();
+                        //  Navigator.of(context)
+                        //      .pushNamed(AppRoutes.POKELISTPAGE);
+                        //} else {
+                        Navigator.of(context).pushNamed(AppRoutes.POKELISTPAGE);
+                        //}
                       },
                     ),
                   ],

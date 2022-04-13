@@ -20,19 +20,21 @@ class ModalPage extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.all(10),
-              child: providerPokelist.isSvgImage(provider.image!)
-                  ? SvgPicture.network(
-                      provider.image!,
-                      fit: BoxFit.fill,
-                      height: 135,
-                      width: 126,
-                    )
-                  : Image.network(
-                      provider.image!,
-                      fit: BoxFit.fill,
-                      height: 135,
-                      width: 126,
-                    ),
+              child: provider.imageFile != null
+                  ? Image.file(provider.imageFile!)
+                  : providerPokelist.isSvgImage(provider.image!)
+                      ? SvgPicture.network(
+                          provider.image!,
+                          fit: BoxFit.fill,
+                          height: 135,
+                          width: 126,
+                        )
+                      : Image.network(
+                          provider.image!,
+                          fit: BoxFit.fill,
+                          height: 135,
+                          width: 126,
+                        ),
             ),
             Expanded(
               child: Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/navigation.dart';
+import 'package:pokedex/models/pokemon_list.dart';
 import 'package:pokedex/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,7 @@ class CustomBottomNavigationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Pokelist providerPokemons = Provider.of(context);
     final provider = Provider.of<Navigation>(context);
 
     return BottomNavigationBar(
@@ -20,6 +22,9 @@ class CustomBottomNavigationWidget extends StatelessWidget {
             Navigator.of(context).pushReplacementNamed(AppRoutes.HOME);
             break;
           case 1:
+            if (providerPokemons.newList.isEmpty) {
+              providerPokemons.loadedPokemons();
+            }
             Navigator.canPop(context)
                 ? Navigator.of(context)
                     .pushReplacementNamed(AppRoutes.POKELISTPAGE)

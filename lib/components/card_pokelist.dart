@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pokedex/components/drop_down_button.dart';
 import 'package:pokedex/models/list_drop_down.dart';
 import 'package:pokedex/models/pokemon_list.dart';
 import 'package:pokedex/models/pokemons.dart';
 import 'package:pokedex/pages/modal_page.dart';
-import 'package:pokedex/pages/poke_list_page.dart';
 import 'package:provider/provider.dart';
 
 class CardPokelist extends StatelessWidget {
@@ -31,15 +29,26 @@ class CardPokelist extends StatelessWidget {
         onTap: () {
           _openModal(context, provider);
         },
-        leading: CircleAvatar(
-          backgroundColor: const Color.fromRGBO(26, 167, 211, 1),
-          child: providerPokemon.isSvgImage(provider.image!)
-              ? SvgPicture.network(
-                  provider.image!,
-                )
-              : Image.network(
-                  provider.image!,
-                ),
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(300),
+          //,
+          child: Container(
+            height: 48,
+            width: 48,
+            decoration:
+                BoxDecoration(color: const Color.fromRGBO(26, 167, 211, 1)),
+            child: provider.imageFile != null
+                ? Image.file(
+                    provider.imageFile!,
+                  )
+                : providerPokemon.isSvgImage(provider.image!)
+                    ? SvgPicture.network(
+                        provider.image!,
+                      )
+                    : Image.network(
+                        provider.image!,
+                      ),
+          ),
         ),
         title: Row(
           children: [
@@ -60,7 +69,7 @@ class CardPokelist extends StatelessWidget {
         trailing: IconButton(
           icon: const Icon(Icons.arrow_forward_ios),
           onPressed: () {
-            dropProvider.loadedAbility();
+            _openModal(context, provider);
           },
         ),
       ),
