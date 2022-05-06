@@ -4,35 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pokedex/models/pokemons.dart';
 import 'package:http/http.dart' as http;
-import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart' as syspaths;
 
 class Pokelist with ChangeNotifier {
-  List<Pokemon> _pokelist = []; //dummyPokemons;
+  final List<Pokemon> _pokelist = []; //dummyPokemons;
   List<Pokemon> newList = [];
   List<Pokemon> get list => [..._pokelist];
   int get itensCount => _pokelist.length;
-  File? imagePokemon = null;
+
   bool isLoading = false;
 
   toggleLoading() {
     isLoading = !isLoading;
   }
-
-  selectFile() async {
-    final ImagePicker _picker = ImagePicker();
-    XFile? image = await _picker.pickImage(
-        source: ImageSource.gallery, maxWidth: 127, maxHeight: 127);
-    if (image == null) return;
-
-    imagePokemon = File(image.path);
-
-    //final appDir = await syspaths.getApplicationDocumentsDirectory();
-    //String fileName = path.basename(imagePokemon!.path);
-    //final savedImage = await imagePokemon!.copy('${appDir.path}/${fileName}');
-
-    notifyListeners();
-  } // função que seleciona um arquivo e preenche na tela de registro.
 
   bool isSvgImage(String url) {
     bool endsWithFile = url.toLowerCase().endsWith('.svg');
@@ -72,15 +55,16 @@ class Pokelist with ChangeNotifier {
     int index;
     for (index = 1; index < 16; index++) {
       final response = await http
-          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/${index}/'));
+          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$index/'));
       final Map<String, dynamic> data = jsonDecode(response.body);
       //print(data['name']);
-      final pokeSpecies = await http.get(
-          Uri.parse('https://pokeapi.co/api/v2/pokemon-species/${index}/'));
+      final pokeSpecies = await http
+          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon-species/$index/'));
       final Map<String, dynamic> dataSpecies = jsonDecode(pokeSpecies.body);
 
       //print(dataSpecies['egg_groups'][0]['name']);
       //print(dataSpecies['flavor_text_entries'][0]['flavor_text']);
+      // ignore: avoid_print
       print(
           '${data['id']}, ${data['name']}, ${dataSpecies['egg_groups'][0]['name']},${data['types'][0]['type']['name']}, ${dataSpecies['flavor_text_entries'][0]['flavor_text']},${data['sprites']['back_default']}');
       newList.add(

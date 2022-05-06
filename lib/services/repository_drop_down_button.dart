@@ -1,56 +1,58 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
+
 import 'package:http/http.dart' as http;
 
-class ListDropDown with ChangeNotifier {
-  final List<String> type = [];
-  final List<String> category = [];
-  final List<String> ability = [];
+class DropDownButtonRepository {
+  // List<String> get type => _type;
+  // List<String> get category => _category;
+  // List<String> get ability => _ability;
+
   String selectCategory = '';
   String selectType = '';
   String selectAbility = '';
 
-  //List<String> get type => _type;
-  //List<String> get category => _category;
-  //List<String> get ability => _ability;
-
-  Future<void> loadedType() async {
-    type.add('Tipo');
+  Future<List<String>> loadedType() async {
+    final List<String> _type = ['Tipo'];
+    // ignore: avoid_print
+    print('carreagndo informações');
+    //type.add('Tipo');
     int index;
     final response =
         await http.get(Uri.parse('https://pokeapi.co/api/v2/type'));
     final Map<String, dynamic> data = jsonDecode(response.body);
 
     for (index = 0; index < data['results'].length; index++) {
-      type.add(data['results'][index]['name']);
+      _type.add(data['results'][index]['name']);
     }
-    notifyListeners();
+    return _type;
   }
 
-  Future<void> loadedCategory() async {
-    category.add('Categoria');
+  Future<List<String>> loadedCategory() async {
+    final List<String> _category = ['Categoria'];
     int index;
     final response =
         await http.get(Uri.parse('https://pokeapi.co/api/v2/egg-group/'));
     final Map<String, dynamic> data = jsonDecode(response.body);
 
     for (index = 0; index < data['results'].length; index++) {
-      category.add(data['results'][index]['name']);
+      _category.add(data['results'][index]['name']);
     }
-    notifyListeners();
+
+    return _category;
   }
 
-  Future<void> loadedAbility() async {
-    //if (ability.isNotEmpty) return;
-    ability.add('Habilidades');
+  Future<List<String>> loadedAbility() async {
+    final List<String> _ability = ['Habilidades'];
+
     int index;
     final response =
         await http.get(Uri.parse('https://pokeapi.co/api/v2/ability'));
     final Map<String, dynamic> data = jsonDecode(response.body);
 
     for (index = 0; index < data['results'].length; index++) {
-      ability.add(data['results'][index]['name']);
+      _ability.add(data['results'][index]['name']);
     }
-    notifyListeners();
+
+    return _ability;
   }
 }
