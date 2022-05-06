@@ -4,10 +4,6 @@ abstract class TabBarEvent {
   TabBarEvent({required this.option});
 }
 
-class GetOptionEvent extends TabBarEvent {
-  GetOptionEvent() : super(option: 0);
-}
-
 class AlternationOptionEvent extends TabBarEvent {
   int optionToAlternation;
 

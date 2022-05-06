@@ -9,8 +9,5 @@ class TabBarBloc extends Bloc<TabBarEvent, TabBarState> {
   TabBarBloc() : super(TabBarInitialState()) {
     on<AlternationOptionEvent>((event, emit) => emit(TabBarSucessState(
         index: _tabBarRepository.updatePageSelection(event.option))));
-
-    on<GetOptionEvent>((event, emit) => emit(
-        TabBarSucessState(index: _tabBarRepository.getPageSelectionIndex())));
   }
 }

@@ -7,20 +7,9 @@ class DropDownButtonBloc extends Bloc<DropDownListEvent, DropDownButtonState> {
   final _dropDownRepository = DropDownButtonRepository();
 
   DropDownButtonBloc() : super(DropDownButtonInitialState()) {
-    //on<LoadPokemonListEvent>((event, emit) => emit(
-    //    PokeListSucessState(pokemons: _pokeRepository.loadedPokemonsDummy())));
-
     on<LoadedDropDownListEvent>((event, emit) => _loadDropDown(event, emit));
 
-    // on<LoadedDropDownCategoryListEvent>(
-    //     (event, emit) => _loadDropDownCategory(event, emit));
-//
-    // on<LoadedDropDownTypeListEvent>(
-    //     (event, emit) => _loadDropDownType(event, emit));
-
     add(LoadedDropDownListEvent());
-    //add(LoadedDropDownCategoryListEvent());
-    //add(LoadedDropDownTypeListEvent());
   }
 
   void _loadDropDown(
@@ -42,28 +31,4 @@ class DropDownButtonBloc extends Bloc<DropDownListEvent, DropDownButtonState> {
       print(e);
     }
   }
-
-  //void _loadDropDownCategory(LoadedDropDownCategoryListEvent event,
-  //    Emitter<DropDownButtonState> emit) async {
-  //  emit(DropDownButtonLoadingState());
-  //  try {
-  //    List<String> dropDownList = await _dropDownRepository.loadedCategory();
-  //    emit(DropDownButtonSucessState(dropDownList: dropDownList));
-  //  } catch (e) {
-  //    // ignore: avoid_print
-  //    print(e);
-  //  }
-  //}
-//
-  //void _loadDropDownType(LoadedDropDownTypeListEvent event,
-  //    Emitter<DropDownButtonState> emit) async {
-  //  emit(DropDownButtonLoadingState());
-  //  try {
-  //    List<String> dropDownList = await _dropDownRepository.loadedType();
-  //    emit(DropDownButtonSucessState(dropDownList: dropDownList));
-  //  } catch (e) {
-  //    // ignore: avoid_print
-  //    print(e);
-  //  }
-  //}
 }

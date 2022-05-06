@@ -1,15 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:image_picker/image_picker.dart';
-import 'package:pokedex/data/dummy_data.dart';
 import 'package:pokedex/models/pokemons.dart';
 import 'package:http/http.dart' as http;
-import 'package:pokedex/pages/pokelistPage/bloc/pokemon_list_bloc.dart';
 
 class PokelistRepository {
-  List<Pokemon> _pokeListDummy = [];
-
   Future<List<Pokemon>> loadedPokemons() async {
     final List<Pokemon> _pokeList = [];
     int index;
@@ -51,10 +46,6 @@ class PokelistRepository {
     );
 
     return list;
-  }
-
-  List<Pokemon> loadedPokemonsDummy() {
-    return _pokeListDummy = dummyPokemons;
   }
 }
 

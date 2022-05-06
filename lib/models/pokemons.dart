@@ -24,6 +24,3 @@ class Pokemon with ChangeNotifier {
       this.isFavorite = false,
       this.imageFile});
 }
-
-
-//Foto, Nome, Categoria, Tipo, Habilidades e Descrição.

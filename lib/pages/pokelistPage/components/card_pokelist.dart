@@ -18,15 +18,10 @@ class CardPokelist extends StatelessWidget {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return
-              //BlocProvider.value(
-              //  value: context.read<PokemonBloc>(),
-              //  child:
-              DialogPage(
+          return DialogPage(
             pokemon: pokemon,
             index: index,
           );
-          //),
         });
   }
 
@@ -42,7 +37,6 @@ class CardPokelist extends StatelessWidget {
         },
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(300),
-          //,
           child: Container(
             height: 48,
             width: 48,

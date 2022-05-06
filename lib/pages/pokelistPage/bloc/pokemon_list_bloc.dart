@@ -42,9 +42,4 @@ class PokeBloc extends Bloc<PokeEvent, PokeListState> {
       print(e);
     }
   }
-//  void _loadedPokemons(
-//      LoadedPokemonListEvent event, Emitter<PokeListState> emit) async {
-//    await _pokeRepository.loadedPokemons();
-//    emit(PokeListSucessState(pokemons: _pokeRepository.list));
-//  }
 }

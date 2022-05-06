@@ -3,19 +3,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class DropDownButtonRepository {
-  // List<String> get type => _type;
-  // List<String> get category => _category;
-  // List<String> get ability => _ability;
-
-  String selectCategory = '';
-  String selectType = '';
-  String selectAbility = '';
-
   Future<List<String>> loadedType() async {
     final List<String> _type = ['Tipo'];
     // ignore: avoid_print
     print('carreagndo informações');
-    //type.add('Tipo');
     int index;
     final response =
         await http.get(Uri.parse('https://pokeapi.co/api/v2/type'));

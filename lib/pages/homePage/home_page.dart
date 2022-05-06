@@ -43,12 +43,6 @@ class HomePage extends StatelessWidget {
                       TextButton(
                         child: const Text('Visualizar Pokémons'),
                         onPressed: () {
-                          //if (providerPokemons.list.isEmpty) {
-                          //providerPokemons.loadedPokemons();
-                          //  Navigator.of(context)
-                          //      .pushNamed(AppRoutes.POKELISTPAGE);
-                          //} else {
-
                           Navigator.of(context)
                               .pushNamed(AppRoutes.pokelistPage);
                         },
@@ -106,7 +100,5 @@ class HomePage extends StatelessWidget {
         bottomNavigationBar: const CustomBottomNavigationWidget(),
       ),
     );
-
-    //);
   }
 }

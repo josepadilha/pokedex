@@ -9,9 +9,6 @@ class ImageFileBloc extends Bloc<ImageFileEvent, ImageFileState> {
   final _pokeRepository = ImageFileRepository();
 
   ImageFileBloc() : super(ImageFileInitState()) {
-    //on<LoadPokemonListEvent>((event, emit) => emit(
-    //    PokeListSucessState(pokemons: _pokeRepository.loadedPokemonsDummy())));
-
     on<PickedImageFileEvent>((event, emit) => _pickedImage(event, emit));
   }
 

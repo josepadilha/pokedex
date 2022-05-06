@@ -12,6 +12,3 @@ class TabBarRepository with ChangeNotifier {
     return pageSelectionIndex = index;
   }
 }
-
-
-// enumerator
