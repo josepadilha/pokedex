@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/models/list_drop_down.dart';
 import 'package:pokedex/models/navigation.dart';
 import 'package:pokedex/models/pokemon_list.dart';
-import 'package:pokedex/models/pokemons.dart';
 import 'package:pokedex/pages/poke_list_page.dart';
 import 'package:pokedex/pages/register_page.dart';
 import './pages/home_page.dart';
 import './utils/app_routes.dart';
 import 'package:provider/provider.dart';
-
-import 'components/tab_bar_page.dart';
 
 void main() {
   runApp(const MyApp());
