@@ -26,9 +26,6 @@ class RegisterPage extends StatelessWidget {
     _onsubimt() {
       final isValid = _formKey.currentState?.validate() ?? false;
       if (!isValid) return;
-
-      print(
-          '${dropProvider.selectAbility}, ${dropProvider.selectCategory}, ${dropProvider.selectType} ');
       pokelistProvider.addPokemons(Pokemon(
         id: Random().nextInt(32),
         name: _nameController.text.toString(),
@@ -113,16 +110,16 @@ class RegisterPage extends StatelessWidget {
                                   hintText: 'Nome do Pokémon',
                                 ),
                                 validator: (_name) {
-                                  final name = _name ?? '';
                                   if (_nameController.text.trim().length < 4) {
                                     return 'Nome deve conter no mínimo 4 caracteres.';
                                   }
+                                  return null;
                                 },
                               ),
                             ),
                           ],
                         ),
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
@@ -182,106 +179,3 @@ class RegisterPage extends StatelessWidget {
     );
   }
 }
-    //Scaffold(
-    //  appBar: AppBar(
-    //    title: const Text('CADASTRE SEU POKÉMON'),
-    //  ),
-    //  body: Form(
-    //      child: Container(
-    //    child: Column(children: [
-    //      Container(
-    //        margin: const EdgeInsets.all(30),
-    //        child: const Text(
-    //          'Crie seu próprio pokemon',
-    //        ),
-    //      ),
-    //      const SizedBox(
-    //        height: 48,
-    //      ),
-    //      Container(
-    //        margin: const EdgeInsets.only(left: 23),
-    //        child: Row(
-    //          children: [
-    //            Container(
-    //              width: 127,
-    //              height: 160,
-    //              child: Column(
-    //                children: [
-    //                  Container(
-    //                    width: 127,
-    //                    height: 127,
-    //                    decoration: const BoxDecoration(
-    //                        image: DecorationImage(
-    //                            image:
-    //                                AssetImage('assets/images/pokebola.png'))),
-    //                  ),
-    //                  const SizedBox(
-    //                    height: 15,
-    //                  ),
-    //                  Container(
-    //                    alignment: Alignment.topCenter,
-    //                    height: 13,
-    //                    child: TextFormField(
-    //                      textAlign: TextAlign.center,
-    //                      decoration: const InputDecoration(
-    //                        border: InputBorder.none,
-    //                        hintText: 'Editar',
-    //                        hintStyle: TextStyle(
-    //                          fontSize: 10,
-    //                        ),
-    //                      ),
-    //                    ),
-    //                  )
-    //                ],
-    //              ),
-    //            ),
-    //            Column(
-    //              children: [
-    //                Container(
-    //                  height: 160,
-    //                  width: 193,
-    //                  margin: EdgeInsets.all(19),
-    //                  child: Center(
-    //                    child: TextFormField(
-    //                      decoration: InputDecoration(
-    //                          hintMaxLines: 1,
-    //                          hintText: 'Nome do Pokémon',
-    //                          hintStyle: TextStyle(fontSize: 12)),
-    //                    ),
-    //                  ),
-    //                ),
-    //                SizedBox(
-    //                  height: 28,
-    //                )
-    //              ],
-    //            ),
-    //          ],
-    //        ),
-    //      ),
-    //      Container(
-    //        margin: EdgeInsets.only(left: 24),
-    //        child: Row(children: [
-    //          Container(
-    //            color: Colors.amber,
-    //            width: 157,
-    //            child: TextFormField(),
-    //          ),
-    //          SizedBox(
-    //            width: 30,
-    //          ),
-    //          Container(
-    //            margin: EdgeInsets.only(right: 23.5),
-    //            color: Colors.red,
-    //            width: 157,
-    //            //child: DropdownButtonFormField(
-    //            //  items: ,
-    //            //  onChanged: (value) {},
-    //            //),
-    //          ),
-    //        ]),
-    //      )
-    //    ]),
-    //  )),
-    //  bottomNavigationBar: CustomBottomNavigationWidget(provider: provider),
-    //);
- 

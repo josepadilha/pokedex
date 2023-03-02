@@ -14,10 +14,10 @@ class Navigation with ChangeNotifier {
   }
 
   Widget tabsPage(int index) {
-    final tabsPage = [
-      HomePage(),
-      PokeListPage(),
-      RegisterPage(),
+    final tabsPage =  [
+      const HomePage(),
+      const PokeListPage(),
+      const RegisterPage(),
     ];
 
     return tabsPage[index];

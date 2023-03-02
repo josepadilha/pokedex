@@ -11,10 +11,6 @@ class ListDropDown with ChangeNotifier {
   String selectAbility = '';
   List<String> _newList = [];
 
-  //List<String> get type => _type;
-  //List<String> get category => _category;
-  //List<String> get ability => _ability;
-
   Future<void> loadedType() async {
     type.add('Tipo');
     int index;
@@ -42,7 +38,6 @@ class ListDropDown with ChangeNotifier {
   }
 
   Future<void> loadedAbility() async {
-    //if (ability.isNotEmpty) return;
     ability.add('Habilidades');
     int index;
     final response =

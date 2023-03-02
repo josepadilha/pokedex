@@ -14,14 +14,12 @@ class DropButtonAbility extends StatelessWidget {
     final provider = Provider.of<ListDropDown>(context);
 
     provider.selectAbility = 'Habilidades';
-    print(provider.ability);
 
     if (provider.ability.isEmpty) {
       provider.loadedAbility();
     }
     dropList = [...provider.ability];
 
-    print(dropList);
     return SingleChildScrollView(
       child: DropdownButtonFormField(
         value: provider.selectAbility,

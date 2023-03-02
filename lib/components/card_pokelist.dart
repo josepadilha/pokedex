@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pokedex/models/list_drop_down.dart';
 import 'package:pokedex/models/pokemon_list.dart';
 import 'package:pokedex/models/pokemons.dart';
 import 'package:pokedex/pages/modal_page.dart';
@@ -14,13 +13,12 @@ class CardPokelist extends StatelessWidget {
         context: context,
         builder: (_) {
           return ChangeNotifierProvider.value(
-              value: pokemon, child: ModalPage());
+              value: pokemon, child: const DetailsPokemonPage());
         });
   }
 
   @override
   Widget build(BuildContext context) {
-    final ListDropDown dropProvider = Provider.of(context);
     final Pokemon provider = Provider.of(context);
     final Pokelist providerPokemon = Provider.of<Pokelist>(context);
     return Card(
@@ -36,7 +34,7 @@ class CardPokelist extends StatelessWidget {
             height: 48,
             width: 48,
             decoration:
-                BoxDecoration(color: const Color.fromRGBO(26, 167, 211, 1)),
+                const BoxDecoration(color: Color.fromRGBO(26, 167, 211, 1)),
             child: provider.imageFile != null
                 ? Image.file(
                     provider.imageFile!,
@@ -59,7 +57,7 @@ class CardPokelist extends StatelessWidget {
               ),
             ),
             provider.isFavorite
-                ? Icon(
+                ? const Icon(
                     Icons.star,
                     color: Color.fromRGBO(242, 190, 34, 1),
                   )

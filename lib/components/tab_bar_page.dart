@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class CustomBottomNavigationWidget extends StatelessWidget {
   final Navigation provider;
 
-  CustomBottomNavigationWidget({required this.provider});
+   const CustomBottomNavigationWidget({Key? key, required this.provider}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,5 +58,3 @@ class CustomBottomNavigationWidget extends StatelessWidget {
     );
   }
 }
-
-//Icons.add_circle
