@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           const Text(
                             'Veja os Pokemons da Primera Geração.',
-                            style: TextStyle(fontSize: 12),
+                            style: TextStyle(fontSize: 15),
                           ),
                           TextButton(
                             child: const Text('Visualizar Pokémons'),
