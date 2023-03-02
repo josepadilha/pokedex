@@ -19,7 +19,7 @@ class CustomBottomNavigationWidget extends StatelessWidget {
         provider.updatePageSelection(index);
         switch (provider.pageSelectionIndex) {
           case 0:
-            Navigator.of(context).pushReplacementNamed(AppRoutes.HOME);
+            Navigator.of(context).pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
             break;
           case 1:
             if (providerPokemons.newList.isEmpty) {
