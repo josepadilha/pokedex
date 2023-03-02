@@ -67,22 +67,15 @@ class Pokelist with ChangeNotifier {
 
   Future<void> loadedPokemons() async {
     if (newList.isNotEmpty) return;
-    //tentar criar uma lista paralela e depois adicionar a lista principal.
     toggleLoading();
     int index;
     for (index = 1; index < 16; index++) {
       final response = await http
-          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/${index}/'));
+          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$index/'));
       final Map<String, dynamic> data = jsonDecode(response.body);
-      //print(data['name']);
       final pokeSpecies = await http.get(
-          Uri.parse('https://pokeapi.co/api/v2/pokemon-species/${index}/'));
+          Uri.parse('https://pokeapi.co/api/v2/pokemon-species/$index/'));
       final Map<String, dynamic> dataSpecies = jsonDecode(pokeSpecies.body);
-
-      //print(dataSpecies['egg_groups'][0]['name']);
-      //print(dataSpecies['flavor_text_entries'][0]['flavor_text']);
-      print(
-          '${data['id']}, ${data['name']}, ${dataSpecies['egg_groups'][0]['name']},${data['types'][0]['type']['name']}, ${dataSpecies['flavor_text_entries'][0]['flavor_text']},${data['sprites']['back_default']}');
       newList.add(
         Pokemon(
           id: data['id'],
@@ -100,25 +93,3 @@ class Pokelist with ChangeNotifier {
     notifyListeners();
   }
 }
-
-//pokeapi.co/api/v2/pokemon-species/{id or name}/ -- Link para pegar as categorias e descrições.
-
-//data.forEach((key, value) {
-    // list.add(Pokemon(name: value['name']));
-    // print(list);
-    //});
-
-    //print(data['abilities'][0]['ability']['name']); // ability
-    //print(data['name']); // name
-    //print(data['id']); // id
-    //print(data['types'][0]['type']['name']); // type
-    //print(data['sprites']['back_default']); // image
-    //List<dynamic> listPokemons = data['results'];
-    //final nomes = listPokemons.map((e) => Pokemon(name: e['name'])).toList();
-
-//
-    //print(nomes[0].abilites);
-    // data.forEach((key, value) {
-    //   list.add(Pokemon(name: value['name']));
-    //   print(list);
-    // });
